@@ -4,164 +4,203 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Política de Privacidade — offmemo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #fbfaf8;
-    --ink: #1f2421;
-    --ink-soft: #4a534c;
-    --accent: #3c6e5c;
-    --accent-soft: #e7efe9;
-    --rule: #d8ddd6;
-    --max-width: 720px;
+  :root{
+    --paper:#F3F2ED;
+    --surface:#FAF9F5;
+    --surface-2:#ECEAE3;
+    --ink:#1F1F1D;
+    --ink-soft:#57544E;
+    --muted:#8C8980;
+    --line:#E2E0D9;
+    --done:oklch(0.75 0.045 155);
+    --done-tint:oklch(0.75 0.045 155 / 0.16);
+    --maxw:720px;
   }
 
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#181818;
+      --surface:#212122;
+      --surface-2:#2A2A2B;
+      --ink:#E9E7E1;
+      --ink-soft:#B2AFA8;
+      --muted:#7C7A74;
+      --line:#323233;
+    }
   }
 
-  .wrap {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 64px 24px 96px;
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    padding:0 28px 120px;
   }
 
-  header.doc-header {
-    margin-bottom: 48px;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 32px;
+  .wrap{max-width:var(--maxw);margin:0 auto}
+
+  .mono{font-family:"Geist Mono",ui-monospace,monospace}
+  .eyebrow{
+    font-family:"Geist Mono",ui-monospace,monospace;
+    font-size:11.5px;font-weight:500;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--muted);
   }
 
-  .eyebrow {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 12.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 14px;
+  /* ---------- the symbol ---------- */
+  .mark{position:relative;display:inline-block}
+  .mark .card{
+    position:absolute;inset:0;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:26%;
+  }
+  .mark .card.back{
+    transform:translate(-13%,-13%) scale(.86);
+    background:var(--surface-2);
+    opacity:.75;
+  }
+  .mark .card.front{display:flex;flex-direction:column;justify-content:center;gap:11%;padding:0 22%}
+  .mark .line{height:9%;border-radius:99px;background:var(--ink)}
+  .mark .line.short{width:54%}
+  .mark .line.long{width:100%}
+
+  .wordmark{font-weight:600;letter-spacing:-.035em;line-height:1}
+  .wordmark .off{color:var(--ink)}
+  .wordmark .memo{color:var(--muted)}
+
+  /* ---------- header ---------- */
+  header.doc-header{
+    padding-top:80px;
+    margin-bottom:52px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:40px;
+  }
+  .brand{display:flex;align-items:center;gap:14px;margin-bottom:36px}
+  .brand .mark{width:38px;height:38px}
+  .brand .wordmark{font-size:25px}
+
+  .eyebrow.kicker{color:var(--done);margin-bottom:16px}
+  h1{
+    font-size:2.4rem;
+    line-height:1.12;
+    margin:0 0 18px;
+    font-weight:600;
+    letter-spacing:-.03em;
+  }
+  .updated{display:inline-flex;align-items:center;gap:8px;font-size:12px}
+  .updated .dot{width:6px;height:6px;border-radius:50%;background:var(--done)}
+  .lede{font-size:1.12rem;color:var(--ink-soft);margin-top:24px;max-width:620px}
+
+  /* ---------- sections ---------- */
+  section{margin-bottom:44px}
+  h2{
+    display:flex;align-items:baseline;gap:14px;
+    font-size:1.15rem;font-weight:600;letter-spacing:-.015em;
+    margin:0 0 16px;
+  }
+  h2 .num{
+    font-family:"Geist Mono",monospace;
+    font-size:12px;font-weight:500;
+    color:var(--muted);letter-spacing:.06em;
+    padding-top:4px;
+  }
+  p{margin:0 0 14px;color:var(--ink-soft);font-size:1.02rem}
+  p strong{color:var(--ink);font-weight:600}
+  ul{margin:0 0 14px;padding-left:4px;list-style:none}
+  li{
+    margin-bottom:10px;color:var(--ink-soft);font-size:1.02rem;
+    padding-left:26px;position:relative;
+  }
+  li::before{
+    content:"";position:absolute;left:4px;top:.62em;
+    width:7px;height:7px;border-radius:2px;
+    background:var(--surface-2);border:1px solid var(--line);
   }
 
-  h1 {
-    font-size: 2.1rem;
-    line-height: 1.2;
-    margin: 0 0 12px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+  .callout{
+    background:var(--done-tint);
+    border:1px solid color-mix(in oklch, var(--done) 30%, transparent);
+    border-radius:14px;
+    padding:22px 24px;
+    display:flex;gap:16px;align-items:flex-start;
   }
-
-  .updated {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 13.5px;
-    color: var(--ink-soft);
+  .callout .ci{
+    flex:0 0 auto;width:34px;height:34px;border-radius:50%;
+    background:var(--done-tint);display:flex;align-items:center;justify-content:center;
   }
+  .callout .ci svg{width:18px;height:18px}
+  .callout p{margin:0;color:var(--ink);font-size:1.02rem}
+  .callout p strong{color:var(--ink)}
 
-  .lede {
-    font-size: 1.05rem;
-    color: var(--ink-soft);
-    margin-top: 18px;
+  .contact-box{
+    border:1px solid var(--line);
+    background:var(--surface);
+    border-radius:16px;
+    padding:24px 26px;
   }
-
-  section {
-    margin-bottom: 38px;
+  .contact-box .clabel{margin-bottom:6px}
+  .contact-box p{margin:0;color:var(--ink-soft)}
+  .contact-box a{
+    color:var(--ink);text-decoration:none;font-weight:600;
+    font-size:1.08rem;
+    border-bottom:1.5px solid var(--done);
+    padding-bottom:1px;
   }
+  .contact-box a:hover{border-bottom-color:var(--ink)}
 
-  h2 {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 700;
-    margin: 0 0 14px;
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
+  footer{
+    margin-top:64px;padding-top:28px;
+    border-top:1px solid var(--line);
+    display:flex;align-items:center;gap:12px;
+    color:var(--muted);font-size:12.5px;
   }
+  footer .mark{width:22px;height:22px}
 
-  h2 .num {
-    font-family: Georgia, serif;
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    font-weight: 400;
-    letter-spacing: 0;
-  }
-
-  p { margin: 0 0 14px; }
-
-  ul {
-    margin: 0 0 14px;
-    padding-left: 22px;
-  }
-
-  li { margin-bottom: 8px; }
-
-  .callout {
-    background: var(--accent-soft);
-    border-left: 3px solid var(--accent);
-    padding: 18px 20px;
-    border-radius: 2px;
-    font-size: 0.98rem;
-  }
-
-  .callout strong { color: var(--accent); }
-
-  .contact-box {
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 20px 24px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  }
-
-  .contact-box a {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .contact-box a:hover { text-decoration: underline; }
-
-  footer {
-    margin-top: 56px;
-    padding-top: 24px;
-    border-top: 1px solid var(--rule);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 12.5px;
-    color: var(--ink-soft);
-  }
-
-  @media (max-width: 480px) {
-    .wrap { padding: 40px 18px 72px; }
-    h1 { font-size: 1.65rem; }
+  @media(max-width:480px){
+    body{padding:0 18px 80px}
+    header.doc-header{padding-top:52px}
+    h1{font-size:1.85rem}
+    .lede{font-size:1.04rem}
   }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="doc-header">
-      <div class="eyebrow">offmemo</div>
+    <header class="doc-header" data-screen-label="Cabecalho">
+      <div class="brand">
+        <div class="mark">
+          <div class="card back"></div>
+          <div class="card front"><div class="line long"></div><div class="line short"></div></div>
+        </div>
+        <div class="wordmark"><span class="off">off</span><span class="memo">memo</span></div>
+      </div>
+
+      <div class="eyebrow kicker">Privacidade</div>
       <h1>Política de Privacidade</h1>
-      <div class="updated">Última atualização: 21 de junho de 2026</div>
+      <div class="updated mono"><span class="dot"></span>Última atualização: 21 de junho de 2026</div>
       <p class="lede">Este documento explica como o aplicativo offmemo trata as informações dos usuários. Em resumo: ele não coleta nada — tudo fica só no seu aparelho.</p>
     </header>
 
     <section>
-      <h2><span class="num">1</span>Sobre o offmemo</h2>
+      <h2><span class="num">01</span>Sobre o offmemo</h2>
       <p>O offmemo é um aplicativo para Android de notas pessoais. Ele foi criado para funcionar de forma totalmente <strong>offline</strong>, sem necessidade de conexão com a internet para suas funções principais.</p>
     </section>
 
     <section>
-      <h2><span class="num">2</span>Quais dados coletamos</h2>
+      <h2><span class="num">02</span>Quais dados coletamos</h2>
       <div class="callout">
-        <strong>O offmemo não coleta, não armazena em servidores externos e não compartilha nenhum dado pessoal dos usuários.</strong>
+        <div class="ci">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--done)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <p><strong>O offmemo não coleta, não armazena em servidores externos e não compartilha nenhum dado pessoal dos usuários.</strong></p>
       </div>
-      <p style="margin-top:16px;">Todas as notas e informações que você cria dentro do app são armazenadas exclusivamente no banco de dados local do seu próprio dispositivo. Isso significa que:</p>
+      <p style="margin-top:18px;">Todas as notas e informações que você cria dentro do app são armazenadas exclusivamente no banco de dados local do seu próprio dispositivo. Isso significa que:</p>
       <ul>
         <li>Não enviamos suas notas para nenhum servidor, nuvem ou serviço externo;</li>
         <li>Não temos acesso ao conteúdo das suas notas;</li>
@@ -171,7 +210,7 @@
     </section>
 
     <section>
-      <h2><span class="num">3</span>Serviços de terceiros</h2>
+      <h2><span class="num">03</span>Serviços de terceiros</h2>
       <p>O offmemo <strong>não utiliza</strong> serviços de terceiros, como:</p>
       <ul>
         <li>Ferramentas de analytics (ex.: Google Analytics, Firebase);</li>
@@ -182,12 +221,12 @@
     </section>
 
     <section>
-      <h2><span class="num">4</span>Permissões do aplicativo</h2>
+      <h2><span class="num">04</span>Permissões do aplicativo</h2>
       <p>O offmemo pode solicitar permissões do sistema Android estritamente necessárias para seu funcionamento (como acesso ao armazenamento local do dispositivo para salvar suas notas). Essas permissões são usadas apenas localmente e nunca para coleta ou transmissão de dados a terceiros.</p>
     </section>
 
     <section>
-      <h2><span class="num">5</span>Armazenamento e segurança dos dados</h2>
+      <h2><span class="num">05</span>Armazenamento e segurança dos dados</h2>
       <p>Como todos os dados ficam armazenados localmente no dispositivo do usuário:</p>
       <ul>
         <li>A segurança das suas notas depende também da segurança do seu próprio aparelho (senha de tela, criptografia do dispositivo, etc.);</li>
@@ -197,30 +236,34 @@
     </section>
 
     <section>
-      <h2><span class="num">6</span>Crianças e adolescentes</h2>
+      <h2><span class="num">06</span>Crianças e adolescentes</h2>
       <p>O offmemo não coleta dados pessoais de nenhum usuário, incluindo crianças e adolescentes. Por não haver coleta de dados, não há tratamento diferenciado necessário para menores de idade além das recomendações gerais de uso responsável de dispositivos.</p>
     </section>
 
     <section>
-      <h2><span class="num">7</span>Seus direitos (LGPD)</h2>
+      <h2><span class="num">07</span>Seus direitos (LGPD)</h2>
       <p>Como o offmemo não coleta nem armazena dados pessoais em nenhum servidor, não há dados pessoais sob nosso controle para que se exerçam direitos de acesso, correção ou exclusão previstos na Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018). Todo o conteúdo criado por você permanece sob seu controle exclusivo, no seu dispositivo.</p>
     </section>
 
     <section>
-      <h2><span class="num">8</span>Alterações nesta política</h2>
+      <h2><span class="num">08</span>Alterações nesta política</h2>
       <p>Esta Política de Privacidade pode ser atualizada ocasionalmente, por exemplo, caso o app passe a oferecer novas funcionalidades que envolvam tratamento de dados. Recomendamos revisar esta página periodicamente. A data da última atualização estará sempre indicada no topo deste documento.</p>
     </section>
 
     <section>
-      <h2><span class="num">9</span>Contato</h2>
+      <h2><span class="num">09</span>Contato</h2>
       <div class="contact-box">
-        <p style="margin:0;">Dúvidas, sugestões ou solicitações relacionadas a esta política:</p>
-        <p style="margin:8px 0 0;"><a href="mailto:goncalvespnorton@gmail.com">goncalvespnorton@gmail.com</a></p>
+        <div class="eyebrow clabel">Fale com a gente</div>
+        <p style="margin-bottom:10px;">Dúvidas, sugestões ou solicitações relacionadas a esta política:</p>
+        <p><a><span class="__cf_email__" >goncalvespnorton@gmail.com</span></a></p>
       </div>
     </section>
 
     <footer>
-      offmemo — Política de Privacidade
+      <div class="mark">
+        <div class="card front" style="padding:0 24%;gap:18%"><div class="line long"></div></div>
+      </div>
+      <span>offmemo — Política de Privacidade · 2026</span>
     </footer>
   </div>
 </body>
